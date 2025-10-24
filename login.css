@@ -1,0 +1,186 @@
+/* Importa a fonte e define o reset básico */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+:root {
+    --bg-color: #121212;
+    --card-bg: #1E1E1E;
+    --text-color: #E5E5E5;
+    --primary-color: #E50914;
+    --border-color: #333;
+    --border-radius: 12px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: poppins, sans-serif;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    /* Centraliza o container de login na tela */
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Container principal que segura a caixa de login */
+.login-container {
+    width: 100%;
+    max-width: 400px;
+}
+
+/* A caixa de login em si */
+.login-box {
+    background-color: var(--card-bg);
+    padding: 40px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    text-align: center;
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.logo {
+    color: var(--primary-color);
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #aaa;
+    margin-bottom: 30px;
+}
+
+/* Formulário e campos de input */
+#login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group {
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #2a2a2a;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-color);
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(229, 9, 20, 0.5);
+}
+
+/* Botão de Entrar */
+.login-btn {
+    padding: 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.2s, transform 0.2s;
+}
+
+.login-btn:hover {
+    background-color: #b80710; /* Um vermelho mais escuro */
+    transform: translateY(-2px);
+}
+
+/* Mensagem de Erro */
+.error-message {
+    color: #ff8a80; /* Um vermelho claro para erro */
+    font-size: 0.9rem;
+    margin-top: 10px;
+    height: 20px; /* Altura fixa para não empurrar o layout */
+    visibility: hidden; /* Escondido por padrão */
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+.error-message.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Animação de erro */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.shake {
+    animation: shake 0.3s ease-in-out;
+}
+
+
+/* Informações de acesso para convidados */
+.guest-info {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    color: #888;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+.guest-info strong {
+    color: #ccc;
+}
+
+/* =========================================
+   LINK DE REGISTRO
+   ========================================= */
+
+/* Estilo do container e do texto ao redor do link */
+.register-link {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    font-size: 0.9rem;
+    color: #888; /* Cor cinza para o texto "Não tem uma conta?" */
+}
+
+/* Estilo principal do link "Registre-se" */
+.register-link a {
+    color: var(--primary-color); /* Usa a cor vermelha principal do site */
+    text-decoration: none; /* Remove o sublinhado padrão */
+    font-weight: 500; /* Deixa a fonte um pouco mais forte */
+    transition: all 0.2s ease-in-out; /* Adiciona uma transição suave */
+}
+
+/* Efeito ao passar o mouse sobre o link */
+.register-link a:hover {
+    text-decoration: underline; /* Adiciona o sublinhado ao passar o mouse */
+    filter: brightness(1.2); /* Deixa o link um pouco mais brilhante */
+}

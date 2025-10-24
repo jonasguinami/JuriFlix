@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JuriFlix</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1 class="logo">JuriFlix</h1>
+            
+            <div class="search-container">
+                <svg class="search-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="search" id="search-bar" placeholder="Buscar por título...">
+            </div>
+
+            <nav>
+                <button id="favorites-toggle-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
+                    <span class="btn-text">Favoritos</span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero-carousel-section">
+        <div class="hero-carousel-container">
+            <div class="hero-slides"></div>
+            <div class="hero-dots"></div>
+        </div>
+    </section>
+    <main id="main-content" class="container">
+        <section class="category-row">
+            <h2>O Arsenal Essencial</h2>
+            <div class="books-carousel" id="essenciais-carousel"></div>
+            <p class="empty-category-msg">Nenhum livro encontrado.</p>
+        </section>
+        <section class="category-row">
+            <h2>Kit Completo</h2>
+            <div class="books-carousel" id="completo-carousel"></div>
+            <p class="empty-category-msg">Nenhum livro encontrado.</p>
+        </section>
+    </main>
+    <div id="book-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button class="close-modal-btn">&times;</button>
+            <div class="modal-body">
+                <div class="modal-cover"><img id="modal-book-cover" src="" alt="Capa do Livro"></div>
+                <div class="modal-details">
+                    <h2 id="modal-book-title"></h2>
+                    <p id="modal-book-description"></p>
+                    <a id="modal-read-pdf-btn" href="" target="_blank" class="btn-primary">Ler PDF</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer><p> © 2025 JuriFlix. Todos os direitos reservados. </p></footer>
+    <script src="script.js" defer></script>
+</body>
+</html>

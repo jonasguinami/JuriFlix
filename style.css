@@ -1,0 +1,162 @@
+/* ... [Todo o CSS anterior] ... */
+/* Cole o bloco inteiro abaixo para substituir o seu CSS atual */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
+:root {
+    --bg-color: #121212;
+    --card-bg: #1E1E1E;
+    --text-color: #E5E5E5;
+    --primary-color: #E50914;
+    --secondary-color: #B81D24;
+    --border-radius-lg: 16px;
+    --border-radius-sm: 8px;
+    --transition-smooth: 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    --transition-fast: 0.2s ease-in-out;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif; 
+}
+html { scroll-behavior: smooth; }
+body { background-color: var(--bg-color); color: var(--text-color); font-family: 'Poppins', sans-serif; overflow-x: hidden; }
+.container { width: 95%; max-width: 1600px; margin: 0 auto; }
+
+/* HEADER */
+header { padding: 20px 0; position: sticky; top: 0; background: linear-gradient(to bottom, rgba(18, 18, 18, 1) 50%, rgba(18, 18, 18, 0)); z-index: 100; }
+header .container { display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 0 2.5%; }
+.logo { color: var(--primary-color); font-weight: 700; font-size: 1.8rem; text-transform: uppercase; letter-spacing: 1px; }
+.search-container { position: relative; flex-grow: 1; max-width: 400px; }
+.search-icon { position: absolute; top: 50%; left: 15px; transform: translateY(-50%); color: #888; pointer-events: none; }
+#search-bar { width: 100%; padding: 10px 15px 10px 50px; background-color: rgba(42, 42, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.2); border-radius: var(--border-radius-sm); color: var(--text-color); font-size: 0.9rem; transition: all var(--transition-fast); }
+#search-bar:focus { background-color: rgba(0, 0, 0, 0.5); border-color: var(--primary-color); box-shadow: 0 0 10px rgba(229, 9, 20, 0.5); outline: none; }
+#search-bar:focus + .search-icon { color: var(--text-color); }
+#favorites-toggle-btn { background: rgba(42, 42, 42, 0.7); border: 1px solid rgba(255, 255, 255, 0.2); color: var(--text-color); padding: 10px 20px; border-radius: var(--border-radius-sm); cursor: pointer; font-size: 0.9rem; font-weight: 500; display: flex; align-items: center; gap: 10px; transition: all var(--transition-fast); flex-shrink: 0; }
+#favorites-toggle-btn:hover { background: rgba(70, 70, 70, 1); transform: scale(1.05); }
+#favorites-toggle-btn.active { background: linear-gradient(45deg, var(--secondary-color), var(--primary-color)); border-color: transparent; }
+#favorites-toggle-btn.active svg { stroke: white; fill: white; }
+
+/* HERO CAROUSEL */
+.hero-carousel-section { width: 100%; height: 50vh; min-height: 400px; margin-bottom: 50px; position: relative; }
+.hero-carousel-container { position: relative; width: 100%; height: 100%; overflow: hidden; }
+.hero-slides { display: flex; width: 100%; height: 100%; transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1); }
+.hero-slide { width: 100%; height: 100%; flex-shrink: 0; position: relative; display: flex; align-items: center; padding: 0 5%; }
+.hero-slide::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center 30%; background-image: var(--bg-image); filter: blur(8px) brightness(0.4); transform: scale(1.1); }
+.hero-slide::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle, transparent 40%, rgba(18,18,18,0.8) 100%); }
+.hero-content { position: relative; z-index: 2; max-width: 50%; }
+.hero-content h2 { font-size: 2.8rem; font-weight: 700; text-shadow: 3px 3px 8px rgba(0,0,0,0.7); margin-bottom: 15px; }
+.hero-content p { font-size: 1rem; line-height: 1.6; max-width: 600px; color: #ccc; }
+.hero-dots { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); display: flex; gap: 10px; z-index: 3; }
+.hero-dot { width: 12px; height: 12px; border-radius: 50%; background-color: rgba(255, 255, 255, 0.4); cursor: pointer; transition: all var(--transition-fast); }
+.hero-dot.active { background-color: white; transform: scale(1.2); }
+
+/* CATEGORIAS E LIVROS */
+.category-row { margin-bottom: 60px; }
+.category-row h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 25px; padding-left: 2.5%; }
+.empty-category-msg { display: none; padding: 20px 2.5%; color: #888; }
+.category-row.is-empty .books-carousel { display: none; }
+.category-row.is-empty .empty-category-msg { display: block; }
+.books-carousel { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; padding: 10px 2.5%; scrollbar-width: none; }
+.books-carousel::-webkit-scrollbar { display: none; }
+
+/* NOVO: Estilos do Card reestruturado com título visível */
+.book-card {
+    background-color: var(--card-bg);
+    min-width: 200px; width: 200px;
+    border-radius: var(--border-radius-lg);
+    cursor: pointer;
+    transition: transform var(--transition-smooth), box-shadow var(--transition-smooth);
+    scroll-snap-align: start;
+    overflow: hidden;
+}
+.book-card:hover { transform: scale(1.05) translateY(-8px); box-shadow: 0 15px 40px rgba(0,0,0,0.7), 0 0 25px rgba(229,9,20,0.3); z-index: 10; }
+.card-image-container {
+    position: relative;
+    height: 290px;
+}
+.card-image-container img { width: 100%; height: 100%; object-fit: cover; }
+.card-title-container {
+    padding: 15px;
+    text-align: center;
+}
+.card-title-container h3 {
+    font-size: 0.9rem;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--text-color);
+    /* Garante que o texto não quebre em mais de 2 linhas */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+}
+
+/* CORREÇÃO: Animação de favoritar */
+.favorite-btn {
+    position: absolute; top: 10px; right: 10px;
+    background: rgba(0,0,0,0.6); border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 50%; width: 40px; height: 40px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    z-index: 5;
+    transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+.favorite-btn:hover { background-color: rgba(0,0,0,0.8); }
+.favorite-btn svg { transition: fill var(--transition-fast), stroke var(--transition-fast); }
+.favorite-btn.favorited {
+    transform: scale(1.1); /* Efeito "pop" */
+}
+.favorite-btn.favorited svg {
+    fill: var(--primary-color);
+    stroke: var(--primary-color);
+}
+main.favorites-view .book-card:not(.favorited) { display: none; }
+
+/* MODAL */
+/* ... (sem alterações no modal, pode manter o código anterior) ... */
+.modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); z-index: 1000; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity var(--transition-fast), visibility var(--transition-fast); }
+.modal-overlay.active { opacity: 1; visibility: visible; }
+.modal-content { background-color: var(--card-bg); border-radius: var(--border-radius-lg); width: 90%; max-width: 800px; max-height: 90vh; position: relative; transform: scale(0.9); transition: transform var(--transition-fast); }
+.modal-overlay.active .modal-content { transform: scale(1); }
+.close-modal-btn { position: absolute; top: 15px; right: 20px; background: none; border: none; color: #aaa; font-size: 2.5rem; cursor: pointer; transition: color var(--transition-fast); }
+.close-modal-btn:hover { color: white; }
+.modal-body { display: grid; grid-template-columns: 1fr 2fr; gap: 30px; padding: 40px; overflow-y: auto; max-height: 90vh; }
+.modal-cover img { width: 100%; border-radius: var(--border-radius-sm); }
+.modal-details h2 { font-size: 2rem; margin-bottom: 20px; }
+.modal-details p { color: #ccc; line-height: 1.7; margin-bottom: 30px; }
+.btn-primary { background: var(--primary-color); color: white; padding: 12px 25px; border-radius: var(--border-radius-sm); text-decoration: none; font-weight: 500; transition: background-color var(--transition-fast); }
+.btn-primary:hover { background: var(--secondary-color); }
+
+footer {
+    text-align: center; /* Centraliza todo o texto (e outros elementos inline) dentro do footer */
+    padding: 40px 20px; /* Adiciona um respiro para ficar mais bonito */
+    color: #888;
+    border-top: 1px solid #222;
+    margin-top: 40px;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+    header .container { flex-wrap: wrap; row-gap: 15px; }
+    .search-container { order: 3; width: 100%; max-width: 100%; }
+    .logo { font-size: 1.4rem; }
+    #favorites-toggle-btn .btn-text { display: none; }
+    .hero-carousel-section { height: 45vh; min-height: 300px; max-height: 350px; }
+    .hero-content { max-width: 100%; text-align: center; padding: 0 5%; }
+    .hero-content h2 { font-size: 1.8rem; }
+    
+    /* CORREÇÃO: Exibindo a descrição no banner mobile */
+    .hero-content p {
+        display: -webkit-box; /* Habilita o corte por linhas */
+        -webkit-line-clamp: 2; /* Limita a 2 linhas */
+        -webkit-box-orient: vertical;  
+        overflow: hidden;
+        font-size: 0.9rem;
+        margin-top: 10px;
+    }
+
+    .modal-body { grid-template-columns: 1fr; text-align: center; }
+    .modal-cover { max-width: 200px; margin: 0 auto 20px; }
+    .book-card { min-width: 150px; width: 150px; }
+    .card-image-container { height: 220px; }
+}
